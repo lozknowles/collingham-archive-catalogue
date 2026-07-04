@@ -260,9 +260,8 @@ def create_app() -> Flask:
             abort(404)
         record_id = int(target["record_id"])
         field_name = target["field_name"]
-        accepted_value = reviewed_value if reviewed_value is not None else (target["suggested_value"] or target["raw_value"])
-        if accepted_value is None:
-            accepted_value = ""
+        reviewed_value = (reviewed_value or "").strip()
+        accepted_value = reviewed_value if reviewed_value else (target["suggested_value"] or target["raw_value"] or "")
 
         resulting_history_id = None
         if decision in {"accept", "correct"} and field_name:
