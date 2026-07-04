@@ -44,12 +44,28 @@ The proof of concept successfully transcribed a real two-page catalogue card and
 
 ## Repository layout
 
+- `app/` - Flask review app and Jinja templates
 - `schema/` - SQLite schema and validation framework
 - `seed/` - initial sample data and POC seed records
 - `data/sample/` - human-readable sample records and exports
 - `exports/sample/` - curated public export examples
 - `poc/` - copied working OCR proof-of-concept files from `/fast/olmocr-poc`
 - `scripts/` - local bootstrap helpers
+- `tests/` - basic smoke checks
+
+## Review app
+
+This repository now includes a deliberately plain local web app for archivist review.
+
+Screens:
+
+- record list and search
+- record detail
+- edit reviewed fields
+- correction review queue
+- lexicon entries and variants
+
+The app writes reviewed record changes to `catalogue_record_history` and lexicon maintenance actions to `lexicon_history`. Original scans and raw OCR files are left untouched.
 
 ## Local bootstrap
 
@@ -60,6 +76,20 @@ python3 scripts/bootstrap_db.py
 ```
 
 By default this writes `data/collingham-archive-catalogue.sqlite`, which is ignored by git.
+
+## Run locally
+
+```bash
+scripts/run_local.sh
+```
+
+This creates a repo-local virtual environment in `.venv/`, installs Flask, bootstraps the database if needed, and starts the app on `http://127.0.0.1:8000`.
+
+## Smoke check
+
+```bash
+.venv/bin/python scripts/check_routes.py
+```
 
 ## Scope guardrails
 

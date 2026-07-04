@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="panel">
+  <h2>Correction Review Queue</h2>
+  <div class="meta">Unresolved history rows waiting for review.</div>
+</section>
+<section class="panel">
+  <table>
+    <thead>
+      <tr>
+        <th>Record</th>
+        <th>Field</th>
+        <th>Raw OCR</th>
+        <th>Suggested</th>
+        <th>Confidence</th>
+        <th>Reason</th>
+        <th>Review</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      <tr>
+        <td><a href="{{ url_for('record_detail', record_id=row.record_id) }}">{{ row.archive_reference_canonical }}</a><br>{{ row.title }}</td>
+        <td>{{ row.field_name or '—' }}</td>
+        <td><pre>{{ row.raw_value or '—' }}</pre></td>
+        <td><pre>{{ row.suggested_value or '—' }}</pre></td>
+        <td>{{ row.confidence if row.confidence is not none else '—' }}</td>
+        <td>{{ row.reason or '—' }}</td>
+        <td>
+          <form method="post" action="{{ url_for('review_queue_action', history_id=row.history_id) }}" class="stack">
+            <input name="reviewer_name" placeholder="Archivist name">
+            <input name="reason" placeholder="Decision reason">
+            <input name="reviewed_value" placeholder="Reviewed value">
+            <div class="actions">
+              <button class="button" name="decision" value="accept" type="submit">Accept</button>
+              <button class="button secondary" name="decision" value="correct" type="submit">Edit</button>
+              <button class="button secondary" name="decision" value="reject" type="submit">Reject</button>
+            </div>
+          </form>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="7" class="muted">No pending items.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}
+

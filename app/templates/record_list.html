@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="panel stack">
+  <form method="get" action="{{ url_for('record_list') }}">
+    <label for="search">Search records</label>
+    <div class="row" style="align-items: end;">
+      <input id="search" name="search" value="{{ search }}" placeholder="Reference, title, person, place, description">
+      <button class="button" type="submit">Search</button>
+    </div>
+  </form>
+  <div class="meta">
+    {{ records|length }} record(s) shown. Queue items: {{ queue_count }}. Lexicon entries: {{ lexicon_count }}.
+  </div>
+</section>
+
+<section class="panel">
+  <table>
+    <thead>
+      <tr>
+        <th>Reference</th>
+        <th>Title</th>
+        <th>Object</th>
+        <th>Status</th>
+        <th>Pending</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for record in records %}
+      <tr>
+        <td><a href="{{ url_for('record_detail', record_id=record.record_id) }}">{{ record.archive_reference_canonical }}</a></td>
+        <td>{{ record.title }}</td>
+        <td>{{ record.object_name }}</td>
+        <td><span class="pill">{{ record.record_status }}</span>{% if record.is_sample %} <span class="pill">sample</span>{% endif %}</td>
+        <td>{{ record.pending_count }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="5" class="muted">No records found.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}
+

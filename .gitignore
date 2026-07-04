@@ -8,5 +8,5 @@ data/*.sqlite3
 data/*.db
 dist/
 build/
+.venv/
 .DS_Store
-

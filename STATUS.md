@@ -1,6 +1,7 @@
 # Status
 
 Current stage: foundation
+Current stage detail: minimal local review CRUD app added
 
 ## What exists now
 
@@ -11,6 +12,9 @@ Current stage: foundation
 - Public export example that only exposes curated catalogue fields
 - Local bootstrap script for creating a SQLite database
 - Copied proof-of-concept OCR working files into `poc/`
+- Minimal Flask review app with list, detail, edit, queue, and lexicon screens
+- Route smoke checker for local verification
+- Repo-local virtualenv run script
 
 ## Source of truth
 
@@ -31,5 +35,6 @@ Current stage: foundation
 
 - preserve provenance
 - keep append-only correction history
+- keep append-only lexicon audit history
 - keep public exports curated
 - keep catalogue-code validation conservative until source documents are imported

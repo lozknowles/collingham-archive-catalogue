@@ -132,6 +132,51 @@ CREATE TABLE IF NOT EXISTS lexicon_variants (
     UNIQUE (lexicon_entry_id, variant_text)
 );
 
+CREATE TABLE IF NOT EXISTS lexicon_history (
+    lexicon_history_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    lexicon_entry_id INTEGER,
+    variant_id INTEGER,
+    event_type TEXT NOT NULL CHECK (
+        event_type IN (
+            'create_entry',
+            'create_variant',
+            'update_entry',
+            'update_variant',
+            'retire_entry',
+            'retire_variant',
+            'review_note'
+        )
+    ),
+    field_name TEXT,
+    raw_value TEXT,
+    suggested_value TEXT,
+    accepted_value TEXT,
+    confidence REAL CHECK (confidence IS NULL OR (confidence >= 0.0 AND confidence <= 1.0)),
+    reason TEXT,
+    reviewer_decision TEXT CHECK (
+        reviewer_decision IN ('accept', 'correct', 'reject', 'defer', 'info') OR reviewer_decision IS NULL
+    ),
+    reviewer_name TEXT,
+    source_reference TEXT,
+    notes TEXT,
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    FOREIGN KEY (lexicon_entry_id) REFERENCES lexicon_entries(lexicon_entry_id) ON DELETE CASCADE,
+    FOREIGN KEY (variant_id) REFERENCES lexicon_variants(variant_id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS catalogue_history_decisions (
+    decision_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    source_history_id INTEGER NOT NULL UNIQUE,
+    resulting_history_id INTEGER,
+    decision TEXT NOT NULL CHECK (decision IN ('accept', 'correct', 'reject')),
+    accepted_value TEXT,
+    reviewer_name TEXT,
+    reason TEXT,
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    FOREIGN KEY (source_history_id) REFERENCES catalogue_record_history(history_id) ON DELETE CASCADE,
+    FOREIGN KEY (resulting_history_id) REFERENCES catalogue_record_history(history_id) ON DELETE SET NULL
+);
+
 CREATE TABLE IF NOT EXISTS catalogue_code_rules (
     rule_id INTEGER PRIMARY KEY AUTOINCREMENT,
     rule_key TEXT NOT NULL UNIQUE,
@@ -176,4 +221,3 @@ CREATE TABLE IF NOT EXISTS public_exports (
     generated_at TEXT NOT NULL DEFAULT (datetime('now')),
     notes TEXT
 );
-

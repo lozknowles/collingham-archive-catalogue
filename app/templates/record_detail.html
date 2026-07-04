@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="panel stack">
+  <div class="actions">
+    <a class="button secondary" href="{{ url_for('record_list') }}">Back</a>
+    <span class="pill">{{ record.record_status }}</span>
+    {% if record.is_sample %}<span class="pill">POC sample</span>{% endif %}
+  </div>
+  <h2>{{ record.archive_reference_canonical }} - {{ record.title }}</h2>
+  <div class="meta">Record slug: {{ record.record_slug }} | Updated: {{ record.updated_at }}</div>
+</section>
+
+<section class="grid two-col">
+  <div class="panel stack">
+    <h3>Reviewed Fields</h3>
+    <form method="post" action="{{ url_for('record_edit', record_id=record.record_id) }}">
+      <div class="row">
+        <div>
+          <label>Archive reference</label>
+          <input name="archive_reference_canonical" value="{{ record.archive_reference_canonical }}">
+        </div>
+        <div>
+          <label>Object name</label>
+          <input name="object_name" value="{{ record.object_name }}">
+        </div>
+      </div>
+      <label>Title</label>
+      <input name="title" value="{{ record.title }}">
+      <div class="row">
+        <div>
+          <label>Date received</label>
+          <input name="date_received" value="{{ record.date_received or '' }}">
+        </div>
+        <div>
+          <label>Donation date</label>
+          <input name="donation_date" value="{{ record.donation_date or '' }}">
+        </div>
+      </div>
+      <label>Brief description</label>
+      <textarea name="brief_description">{{ record.brief_description or '' }}</textarea>
+      <label>Donated by</label>
+      <input name="donated_by" value="{{ record.donated_by or '' }}">
+      <label>Copyright</label>
+      <input name="copyright" value="{{ record.copyright or '' }}">
+      <label>Associated people, one per line</label>
+      <textarea name="associated_people_text">{% for item in people %}{{ item }}
+{% endfor %}</textarea>
+      <label>Associated places, one per line</label>
+      <textarea name="associated_places_text">{% for item in places %}{{ item }}
+{% endfor %}</textarea>
+      <div class="row">
+        <div>
+          <label>Home location</label>
+          <input name="home_location" value="{{ record.home_location or '' }}">
+        </div>
+        <div>
+          <label>Home location date</label>
+          <input name="home_location_date" value="{{ record.home_location_date or '' }}">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Current location</label>
+          <input name="current_location" value="{{ record.current_location or '' }}">
+        </div>
+        <div>
+          <label>Current location date</label>
+          <input name="current_location_date" value="{{ record.current_location_date or '' }}">
+        </div>
+      </div>
+      <label>Physical description</label>
+      <textarea name="physical_description">{{ record.physical_description or '' }}</textarea>
+      <div class="row">
+        <div>
+          <label>Size</label>
+          <input name="size" value="{{ record.size or '' }}">
+        </div>
+        <div>
+          <label>Condition</label>
+          <input name="condition" value="{{ record.condition or '' }}">
+        </div>
+      </div>
+      <label>Notes</label>
+      <textarea name="notes">{{ record.notes or '' }}</textarea>
+      <label>Cross references</label>
+      <textarea name="cross_references">{{ record.cross_references or '' }}</textarea>
+      <label>Public access summary</label>
+      <textarea name="public_access_summary">{{ record.public_access_summary or '' }}</textarea>
+      <div class="row">
+        <div>
+          <label>Record status</label>
+          <select name="record_status">
+            <option value="active" {% if record.record_status == 'active' %}selected{% endif %}>active</option>
+            <option value="superseded" {% if record.record_status == 'superseded' %}selected{% endif %}>superseded</option>
+            <option value="withdrawn" {% if record.record_status == 'withdrawn' %}selected{% endif %}>withdrawn</option>
+          </select>
+        </div>
+        <div>
+          <label>Provenance note</label>
+          <input name="provenance_note" value="{{ record.provenance_note or '' }}">
+        </div>
+      </div>
+      <label>Reviewer name</label>
+      <input name="reviewer_name" placeholder="Archivist name">
+      <label>Review reason</label>
+      <input name="reason" placeholder="Why these fields changed">
+      <div class="actions" style="margin-top: 1rem;">
+        <button class="button" type="submit">Save reviewed fields</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="stack">
+    <section class="panel stack">
+      <h3>Snapshot</h3>
+      <div><strong>Reference:</strong> {{ record.archive_reference_canonical }}</div>
+      <div><strong>Title:</strong> {{ record.title }}</div>
+      <div><strong>Object:</strong> {{ record.object_name }}</div>
+      <div><strong>People:</strong> {{ people|join(', ') }}</div>
+      <div><strong>Places:</strong> {{ places|join(', ') }}</div>
+    </section>
+
+    <section class="panel stack">
+      <h3>Code Checks</h3>
+      {% for check in code_checks %}
+      <div class="stack" style="border-top: 1px solid var(--line); padding-top: .75rem;">
+        <div><strong>Raw:</strong> {{ check.raw_code }}</div>
+        <div><strong>Suggested:</strong> {{ check.suggested_code or '—' }}</div>
+        <div><strong>Canonical:</strong> {{ check.canonical_code or '—' }}</div>
+        <div><strong>Result:</strong> {{ check.result }}</div>
+        <div><strong>Confidence:</strong> {{ check.confidence if check.confidence is not none else '—' }}</div>
+        <div><strong>Reason:</strong> {{ check.reason or '—' }}</div>
+        <div><strong>Rule:</strong> {{ check.rule_name or '—' }}</div>
+      </div>
+      {% else %}
+      <div class="muted">No code checks recorded.</div>
+      {% endfor %}
+    </section>
+  </div>
+</section>
+
+<section class="panel stack">
+  <h3>Correction History</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Raw OCR</th>
+        <th>Suggested</th>
+        <th>Accepted</th>
+        <th>Confidence</th>
+        <th>Reason</th>
+        <th>Decision</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in history %}
+      <tr>
+        <td>{{ item.field_name or '—' }}</td>
+        <td><pre>{{ item.raw_value or '—' }}</pre></td>
+        <td><pre>{{ item.suggested_value or '—' }}</pre></td>
+        <td><pre>{{ item.accepted_value or '—' }}</pre></td>
+        <td>{{ item.confidence if item.confidence is not none else '—' }}</td>
+        <td>{{ item.reason or '—' }}</td>
+        <td>{{ item.reviewer_decision or 'pending' }}</td>
+        <td>
+          <form method="post" action="{{ url_for('history_decision', history_id=item.history_id) }}" class="stack">
+            <input name="reviewer_name" placeholder="Archivist name">
+            <input name="reason" placeholder="Decision reason">
+            <input name="reviewed_value" placeholder="Reviewed value">
+            <div class="actions">
+              <button class="button" name="decision" value="accept" type="submit">Accept</button>
+              <button class="button secondary" name="decision" value="correct" type="submit">Edit</button>
+              <button class="button secondary" name="decision" value="reject" type="submit">Reject</button>
+            </div>
+          </form>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="8" class="muted">No history yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}
