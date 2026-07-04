@@ -1,0 +1,19 @@
+{
+  "pdf": "/fast/olmocr-poc/card.pdf",
+  "dpi": 90,
+  "max_new_tokens": 512,
+  "pages": [
+    {
+      "page": 1,
+      "image": "/fast/olmocr-poc/output/card/pages/page-1.png",
+      "seconds": 576.76,
+      "transcription": "Collingham and District Local History Society\n\nSimple object name: WORD DOCUMENT\nID number: EF/AA/JOH/8\nTitle: JOHNSON DAVID\nDate received: OCT 23\nBrief description: 'LIVING HISTORIES PROJECT' LIFE STORY OF DAVID JOHNSON b 1934\nDonated/loan by: H PIEU CHATY\nDate: OCT 23\nCopyright: H PIEU CHATY\nAssociated people: CROCKER, THOL WAITE, NEWSTEAD, NICHOLSON,\nAssociated places: 79 HIGH ST, 52 HIGH ST (CLEMATIS COTTAGE), 14 DYKES END, DYKES END COTTAGE, ST JOHN THE BAPTIST\nHome location: EF/AA/J-L\nDate: 12/2/2024\nCurrent location:\nDate:"
+    },
+    {
+      "page": 2,
+      "image": "/fast/olmocr-poc/output/card/pages/page-2.png",
+      "seconds": 252.63,
+      "transcription": "Physical description, family, street, house etc.\nELEVEN PAGES OF A4. FRONT PAGE HAS PHOTO OF DAVID JOHNSON AND PHOTO OF 7A HIGH ST, COTTAGE WITH DRIVEWAY GATE IN FOREGROUND\n\nSize | Condition\nA4 | EXCELLENT\n\nNotes, cross references etc.\nEF|AA|JOH|77 STORY OF THE JOHNSON FAMILY"
+    }
+  ]
+}

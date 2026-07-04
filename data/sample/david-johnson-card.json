@@ -1,0 +1,54 @@
+{
+  "sample": true,
+  "record_slug": "david-johnson-life-story",
+  "source": {
+    "workspace": "/fast/olmocr-poc",
+    "scan_pdf": "/fast/olmocr-poc/card.pdf",
+    "page_images": [
+      "/fast/olmocr-poc/output/card/pages/page-1.png",
+      "/fast/olmocr-poc/output/card/pages/page-2.png"
+    ]
+  },
+  "ocr_runtime": {
+    "model_path": "/fast/models/huggingface/olmOCR-2-7B-1025",
+    "framework": "PyTorch 2.4.1+cu121",
+    "precision": "float32",
+    "attention": "eager",
+    "cpu_offload": true,
+    "gpu_memory_gib": 14,
+    "cpu_memory_gib": 48,
+    "gpu": "NVIDIA Quadro P5000 16 GB"
+  },
+  "raw_ocr": {
+    "archive_reference": "EF/AA/JOH/8",
+    "object_name": "WORD DOCUMENT",
+    "title": "JOHNSON DAVID",
+    "donated_by": "H PIEU CHATY",
+    "brief_description": "'LIVING HISTORIES PROJECT' LIFE STORY OF DAVID JOHNSON b 1934",
+    "associated_people": [
+      "CROCKER",
+      "THOL WAITE",
+      "NEWSTEAD",
+      "NICHOLSON"
+    ],
+    "associated_places": [
+      "79 HIGH ST",
+      "52 HIGH ST (CLEMATIS COTTAGE)",
+      "14 DYKES END",
+      "DYKES END COTTAGE",
+      "ST JOHN THE BAPTIST"
+    ],
+    "notes": "Page 2 contains the cross-reference EF|AA|JOH|77 STORY OF THE JOHNSON FAMILY."
+  },
+  "canonical": {
+    "archive_reference": "EF/AA/JOH/7",
+    "donated_by": "H PIELICHATY",
+    "public_access_summary": "Archive reference EF/AA/JOH/7. Life story of David Johnson, including references to Dykes End Cottage and other Collingham places."
+  },
+  "lexicon": {
+    "canonical_surname": "PIELICHATY",
+    "known_variant": "PIEU CHATY"
+  },
+  "status": "POC_SAMPLE_ONLY"
+}
+

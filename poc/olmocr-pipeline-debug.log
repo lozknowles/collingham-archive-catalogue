@@ -1,0 +1,81 @@
+2026-07-04 15:10:54,720 - olmocr.pipeline - INFO - If you run out of GPU memory during start-up or get 'KV cache is larger than available memory' errors, retry with lower values, e.g. --gpu_memory_utilization 0.80  --max_model_len 16384
+2026-07-04 15:10:54,736 - olmocr.pipeline - INFO - Got --pdfs argument, going to add to the work queue
+2026-07-04 15:11:41,423 - olmocr.pipeline - INFO - If you run out of GPU memory during start-up or get 'KV cache is larger than available memory' errors, retry with lower values, e.g. --gpu_memory_utilization 0.80  --max_model_len 16384
+2026-07-04 15:11:41,432 - olmocr.pipeline - INFO - Got --pdfs argument, going to add to the work queue
+2026-07-04 15:11:41,432 - olmocr.pipeline - INFO - Loading file at /fast/olmocr-poc/test-pdfs/smoke.pdf as PDF document
+2026-07-04 15:11:41,432 - olmocr.pipeline - INFO - Found 1 regular pdf paths and 0 tarballs to add
+2026-07-04 15:11:41,435 - olmocr.pipeline - INFO - Calculated items_per_group: 500 based on average pages per PDF: 1.00
+2026-07-04 15:11:42,822 - olmocr.pipeline - INFO - Starting pipeline with PID 2124809
+2026-07-04 15:11:42,823 - olmocr.pipeline - INFO - Using local model path at '/fast/models/huggingface/olmOCR-2-7B-1025'
+2026-07-04 15:11:42,823 - olmocr.pipeline - INFO - Using internal server at http://localhost:30024/v1
+2026-07-04 15:11:42,894 - olmocr.pipeline - WARNING - Attempt 1: Please wait for vllm server to become ready...
+2026-07-04 15:11:43,920 - olmocr.pipeline - WARNING - Attempt 2: Please wait for vllm server to become ready...
+2026-07-04 15:11:44,186 - vllm - INFO - Traceback (most recent call last):
+2026-07-04 15:11:44,186 - vllm - INFO -   File "/fast/olmocr-poc/.venv/bin/vllm", line 3, in <module>
+2026-07-04 15:11:44,186 - vllm - INFO -     from vllm.entrypoints.cli.main import main
+2026-07-04 15:11:44,186 - vllm - INFO -   File "/fast/olmocr-poc/.venv/lib/python3.12/site-packages/vllm/__init__.py", line 14, in <module>
+2026-07-04 15:11:44,187 - vllm - INFO -     import vllm.env_override  # noqa: F401
+2026-07-04 15:11:44,187 - vllm - INFO -     ^^^^^^^^^^^^^^^^^^^^^^^^
+2026-07-04 15:11:44,187 - vllm - INFO -   File "/fast/olmocr-poc/.venv/lib/python3.12/site-packages/vllm/env_override.py", line 24, in <module>
+2026-07-04 15:11:44,187 - vllm - INFO -     torch._inductor.config.compile_threads = 1
+2026-07-04 15:11:44,187 - vllm - INFO -     ^^^^^^^^^^^^^^^^^^^^^^
+2026-07-04 15:11:44,187 - vllm - INFO - AttributeError: module 'torch._inductor' has no attribute 'config'
+2026-07-04 15:11:44,428 - olmocr.pipeline - WARNING - VLLM server task ended
+2026-07-04 15:11:44,947 - olmocr.pipeline - WARNING - Attempt 3: Please wait for vllm server to become ready...
+2026-07-04 15:11:45,711 - vllm - INFO - Traceback (most recent call last):
+2026-07-04 15:11:45,711 - vllm - INFO -   File "/fast/olmocr-poc/.venv/bin/vllm", line 3, in <module>
+2026-07-04 15:11:45,711 - vllm - INFO -     from vllm.entrypoints.cli.main import main
+2026-07-04 15:11:45,711 - vllm - INFO -   File "/fast/olmocr-poc/.venv/lib/python3.12/site-packages/vllm/__init__.py", line 14, in <module>
+2026-07-04 15:11:45,711 - vllm - INFO -     import vllm.env_override  # noqa: F401
+2026-07-04 15:11:45,712 - vllm - INFO -     ^^^^^^^^^^^^^^^^^^^^^^^^
+2026-07-04 15:11:45,712 - vllm - INFO -   File "/fast/olmocr-poc/.venv/lib/python3.12/site-packages/vllm/env_override.py", line 24, in <module>
+2026-07-04 15:11:45,712 - vllm - INFO -     torch._inductor.config.compile_threads = 1
+2026-07-04 15:11:45,712 - vllm - INFO -     ^^^^^^^^^^^^^^^^^^^^^^
+2026-07-04 15:11:45,712 - vllm - INFO - AttributeError: module 'torch._inductor' has no attribute 'config'
+2026-07-04 15:11:45,975 - olmocr.pipeline - WARNING - VLLM server task ended
+2026-07-04 15:11:45,978 - olmocr.pipeline - WARNING - Attempt 4: Please wait for vllm server to become ready...
+2026-07-04 15:11:47,005 - olmocr.pipeline - WARNING - Attempt 5: Please wait for vllm server to become ready...
+2026-07-04 15:11:47,305 - vllm - INFO - Traceback (most recent call last):
+2026-07-04 15:11:47,305 - vllm - INFO -   File "/fast/olmocr-poc/.venv/bin/vllm", line 3, in <module>
+2026-07-04 15:11:47,306 - vllm - INFO -     from vllm.entrypoints.cli.main import main
+2026-07-04 15:11:47,306 - vllm - INFO -   File "/fast/olmocr-poc/.venv/lib/python3.12/site-packages/vllm/__init__.py", line 14, in <module>
+2026-07-04 15:11:47,306 - vllm - INFO -     import vllm.env_override  # noqa: F401
+2026-07-04 15:11:47,306 - vllm - INFO -     ^^^^^^^^^^^^^^^^^^^^^^^^
+2026-07-04 15:11:47,306 - vllm - INFO -   File "/fast/olmocr-poc/.venv/lib/python3.12/site-packages/vllm/env_override.py", line 24, in <module>
+2026-07-04 15:11:47,306 - vllm - INFO -     torch._inductor.config.compile_threads = 1
+2026-07-04 15:11:47,306 - vllm - INFO -     ^^^^^^^^^^^^^^^^^^^^^^
+2026-07-04 15:11:47,307 - vllm - INFO - AttributeError: module 'torch._inductor' has no attribute 'config'
+2026-07-04 15:11:47,548 - olmocr.pipeline - WARNING - VLLM server task ended
+2026-07-04 15:11:48,031 - olmocr.pipeline - WARNING - Attempt 6: Please wait for vllm server to become ready...
+2026-07-04 15:11:48,838 - vllm - INFO - Traceback (most recent call last):
+2026-07-04 15:11:48,838 - vllm - INFO -   File "/fast/olmocr-poc/.venv/bin/vllm", line 3, in <module>
+2026-07-04 15:11:48,838 - vllm - INFO -     from vllm.entrypoints.cli.main import main
+2026-07-04 15:11:48,839 - vllm - INFO -   File "/fast/olmocr-poc/.venv/lib/python3.12/site-packages/vllm/__init__.py", line 14, in <module>
+2026-07-04 15:11:48,839 - vllm - INFO -     import vllm.env_override  # noqa: F401
+2026-07-04 15:11:48,839 - vllm - INFO -     ^^^^^^^^^^^^^^^^^^^^^^^^
+2026-07-04 15:11:48,839 - vllm - INFO -   File "/fast/olmocr-poc/.venv/lib/python3.12/site-packages/vllm/env_override.py", line 24, in <module>
+2026-07-04 15:11:48,839 - vllm - INFO -     torch._inductor.config.compile_threads = 1
+2026-07-04 15:11:48,839 - vllm - INFO -     ^^^^^^^^^^^^^^^^^^^^^^
+2026-07-04 15:11:48,839 - vllm - INFO - AttributeError: module 'torch._inductor' has no attribute 'config'
+2026-07-04 15:11:49,058 - olmocr.pipeline - WARNING - Attempt 7: Please wait for vllm server to become ready...
+2026-07-04 15:11:49,086 - olmocr.pipeline - WARNING - VLLM server task ended
+2026-07-04 15:11:50,085 - olmocr.pipeline - WARNING - Attempt 8: Please wait for vllm server to become ready...
+2026-07-04 15:11:50,373 - vllm - INFO - Traceback (most recent call last):
+2026-07-04 15:11:50,373 - vllm - INFO -   File "/fast/olmocr-poc/.venv/bin/vllm", line 3, in <module>
+2026-07-04 15:11:50,373 - vllm - INFO -     from vllm.entrypoints.cli.main import main
+2026-07-04 15:11:50,374 - vllm - INFO -   File "/fast/olmocr-poc/.venv/lib/python3.12/site-packages/vllm/__init__.py", line 14, in <module>
+2026-07-04 15:11:50,374 - vllm - INFO -     import vllm.env_override  # noqa: F401
+2026-07-04 15:11:50,374 - vllm - INFO -     ^^^^^^^^^^^^^^^^^^^^^^^^
+2026-07-04 15:11:50,374 - vllm - INFO -   File "/fast/olmocr-poc/.venv/lib/python3.12/site-packages/vllm/env_override.py", line 24, in <module>
+2026-07-04 15:11:50,374 - vllm - INFO -     torch._inductor.config.compile_threads = 1
+2026-07-04 15:11:50,374 - vllm - INFO -     ^^^^^^^^^^^^^^^^^^^^^^
+2026-07-04 15:11:50,374 - vllm - INFO - AttributeError: module 'torch._inductor' has no attribute 'config'
+2026-07-04 15:11:50,617 - olmocr.pipeline - WARNING - VLLM server task ended
+2026-07-04 15:11:50,617 - olmocr.pipeline - ERROR - Ended up starting the vllm server more than 5 times, cancelling pipeline
+2026-07-04 15:11:50,617 - olmocr.pipeline - ERROR - 
+2026-07-04 15:11:50,617 - olmocr.pipeline - ERROR - Please make sure vllm is installed according to the latest instructions here: https://docs.vllm.ai/en/stable/getting_started/installation/gpu.html
+2026-07-04 15:11:50,618 - olmocr.pipeline - INFO - VLLM Process already terminated
+2026-07-04 15:11:50,618 - olmocr.pipeline - INFO - VLLM Process already terminated
+2026-07-04 15:11:50,618 - olmocr.pipeline - INFO - VLLM Process already terminated
+2026-07-04 15:11:50,618 - olmocr.pipeline - INFO - VLLM Process already terminated
+2026-07-04 15:11:50,619 - olmocr.pipeline - INFO - VLLM Process already terminated
